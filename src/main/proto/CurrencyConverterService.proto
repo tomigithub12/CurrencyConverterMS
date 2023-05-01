@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package CurrencyConverterService;
+
+option java_package = "com.example.currencygrpc";
+option java_multiple_files = true;
+
+service CurrencyConverterService {
+  rpc getCurrencyCodes (CurrencyCodesRequest) returns (CurrencyCodesResponse) {}
+  rpc getConvertedValue (ConvertValueRequest) returns (ConvertValueResponse) {}
+}
+
+message CurrencyCodesRequest {}
+
+message CurrencyCodesResponse {
+  repeated string currencyCodes = 1;
+}
+
+message ConvertValueRequest {
+  float current_value = 1;
+  string current_currency_code = 2;
+  string expected_currency_code = 3;
+}
+
+message ConvertValueResponse {
+  float rate = 1;
+}
