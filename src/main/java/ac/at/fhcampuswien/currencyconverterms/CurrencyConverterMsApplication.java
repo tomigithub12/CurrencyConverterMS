@@ -1,18 +1,14 @@
-package ac.at.fhcampuswien.currencyconverter.currencyconverterms;
+package ac.at.fhcampuswien.currencyconverterms;
 
-import jakarta.annotation.PostConstruct;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
+@OpenAPIDefinition(info = @Info(title = "Carrental API", version = "1.0"))
 public class CurrencyConverterMsApplication {
 
-	@PostConstruct
-	public void dummyMethod(){
-		CurrencyService currencyService = new CurrencyService();
-		currencyService.getCurrencyCodes();
-		currencyService.getConvertedValue();
-	}
 	public static void main(String[] args) {
 		SpringApplication.run(CurrencyConverterMsApplication.class, args);
 	}

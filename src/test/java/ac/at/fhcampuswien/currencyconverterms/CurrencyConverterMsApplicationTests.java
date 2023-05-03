@@ -1,4 +1,4 @@
-package ac.at.fhcampuswien.currencyconverter.currencyconverterms;
+package ac.at.fhcampuswien.currencyconverterms;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
