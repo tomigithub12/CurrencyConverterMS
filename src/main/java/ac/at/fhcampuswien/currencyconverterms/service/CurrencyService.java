@@ -5,12 +5,14 @@ import ac.at.fhcampuswien.currencyconverterms.model.CurrencyResponseDto;
 import com.example.currencygrpc.*;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.net.URI;
 import java.util.List;
 
 @Service
+@NoArgsConstructor
 public class CurrencyService {
 
     private ManagedChannel channel;
