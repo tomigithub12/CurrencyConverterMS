@@ -1,4 +1,4 @@
-package ac.at.fhcampuswien.currencyconverterms.model;
+package ac.at.fhcampuswien.currencyconverterms.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;

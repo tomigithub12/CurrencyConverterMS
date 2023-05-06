@@ -1,7 +1,5 @@
 package ac.at.fhcampuswien.currencyconverterms.service;
 
-import ac.at.fhcampuswien.currencyconverterms.exception.CurrencyServiceNotAvailableException;
-import ac.at.fhcampuswien.currencyconverterms.model.CurrencyResponseDto;
 import com.example.currencygrpc.*;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -21,27 +19,28 @@ public class CurrencyService {
     public List<String> getCurrencyCodes() {
         initializeChannel();
         initializeStub(channel);
+
         CurrencyCodesResponse currencyCodes = stub.getCurrencyCodes(CurrencyCodesRequest.newBuilder()
                 .build());
+
         channel.shutdown();
         return currencyCodes.getCurrencyCodesList();
     }
 
     //TODO
-    public void getConvertedValue() {
+    public double getConvertedValue(float currentValue, String currentCurrency, String chosenCurrency) {
         initializeChannel();
         initializeStub(channel);
 
         ConvertValueResponse convertedValue = stub.getConvertedValue(ConvertValueRequest.newBuilder()
-                .setCurrentValue(1f)
-                .setCurrentCurrencyCode("EUR")
-                .setExpectedCurrencyCode("USD")
+                .setCurrentValue(currentValue)
+                .setCurrentCurrencyCode(currentCurrency)
+                .setExpectedCurrencyCode(chosenCurrency)
                 .build());
-
-        System.out.println(convertedValue.getRate());
 
         channel.shutdown();
 
+        return convertedValue.getRate();
     }
 
     private void initializeChannel() {

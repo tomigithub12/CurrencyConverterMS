@@ -2,7 +2,7 @@ package ac.at.fhcampuswien.currencyconverterms.controller;
 
 
 ;
-import ac.at.fhcampuswien.currencyconverterms.model.CurrencyResponseDto;
+import ac.at.fhcampuswien.currencyconverterms.dto.CurrencyResponseDto;
 import ac.at.fhcampuswien.currencyconverterms.service.CurrencyService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -10,7 +10,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AccessLevel;
-import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.*;
