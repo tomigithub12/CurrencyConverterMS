@@ -1,6 +1,16 @@
 HELP.md
 .gradle
-build/
+build/classes
+build/extracted-include-protos
+build/extracted-protos
+build/generated
+build/reports
+build/resources
+build/test-results
+build/tmp
+build/resolvedMainClassName
+build/libs/CurrencyConverterMS-0.0.1-SNAPSHOT-plain.jar
+!build/libs/CurrencyConverterMS-0.0.1-SNAPSHOT.jar
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
