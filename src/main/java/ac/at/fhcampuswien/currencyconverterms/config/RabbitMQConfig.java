@@ -17,6 +17,8 @@ public class RabbitMQConfig {
     public static final String EXCHANGERATE_REPLY_MESSAGE_QUEUE = "exchangeRate_reply_msg_queue";
     public static final String CARS_EXCHANGE = "cars_exchange";
 
+    public static final String CUSTOM_EXCHANGERATE_MESSAGE_QUEUE = "customExchangeRate_msg_queue";
+
     @Bean
     Queue msgQueue1() {
         return new Queue(EXCHANGERATE_MESSAGE_QUEUE);
@@ -25,6 +27,11 @@ public class RabbitMQConfig {
     @Bean
     Queue replyQueue1() {
         return new Queue(EXCHANGERATE_REPLY_MESSAGE_QUEUE);
+    }
+
+    @Bean
+    Queue msgQueue2(){
+        return new Queue(CUSTOM_EXCHANGERATE_MESSAGE_QUEUE);
     }
 
     @Bean
@@ -37,6 +44,12 @@ public class RabbitMQConfig {
         return BindingBuilder.bind(msgQueue1())
                 .to(topicExchange())
                 .with(EXCHANGERATE_MESSAGE_QUEUE);
+    }
+
+    @Bean
+    Binding msgBinding2() {
+
+        return BindingBuilder.bind(msgQueue2()).to(topicExchange()).with(CUSTOM_EXCHANGERATE_MESSAGE_QUEUE);
     }
 
     @Bean

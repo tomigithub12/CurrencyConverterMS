@@ -2,6 +2,7 @@ package ac.at.fhcampuswien.currencyconverterms.rabbitMQ;
 
 import ac.at.fhcampuswien.currencyconverterms.config.RabbitMQConfig;
 import ac.at.fhcampuswien.currencyconverterms.dto.ConversionRequestDto;
+import ac.at.fhcampuswien.currencyconverterms.dto.CustomExchangeRateDto;
 import ac.at.fhcampuswien.currencyconverterms.service.CurrencyService;
 
 import org.slf4j.Logger;
@@ -29,6 +30,12 @@ public class RequestListener {
     public double onConvertedValueRequest(ConversionRequestDto conversionRequestDto) {
         logger.warn("Retrieved request from CarInventoryMS!");
         return currencyService.getConvertedValue(1f, conversionRequestDto.getCurrentCurrency(), conversionRequestDto.getChosenCurrency());
+    }
+
+    @RabbitListener(queues = RabbitMQConfig.CUSTOM_EXCHANGERATE_MESSAGE_QUEUE)
+    public double onCustomRateRequest(CustomExchangeRateDto customExchangeRateDto) {
+        logger.warn("Retrieved request from CarInventoryMS!");
+        return currencyService.getConvertedValue(customExchangeRateDto.getValue(), customExchangeRateDto.getCurrentCurrency(), customExchangeRateDto.getChosenCurrency());
     }
 }
 
