@@ -1,5 +1,6 @@
 package ac.at.fhcampuswien.currencyconverterms.service;
 
+import ac.at.fhcampuswien.currencyconverterms.exception.CurrencyServiceNotAvailableException;
 import com.example.currencygrpc.*;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -16,18 +17,21 @@ public class CurrencyService {
     private ManagedChannel channel;
     private CurrencyConverterServiceGrpc.CurrencyConverterServiceBlockingStub stub;
 
-    public List<String> getCurrencyCodes() {
+    public List<String> getCurrencyCodes() throws CurrencyServiceNotAvailableException {
         initializeChannel();
         initializeStub(channel);
 
-        CurrencyCodesResponse currencyCodes = stub.getCurrencyCodes(CurrencyCodesRequest.newBuilder()
-                .build());
-
-        channel.shutdown();
-        return currencyCodes.getCurrencyCodesList();
+        try {
+            CurrencyCodesResponse currencyCodes = stub.getCurrencyCodes(CurrencyCodesRequest.newBuilder()
+                    .build());
+            channel.shutdown();
+            return currencyCodes.getCurrencyCodesList();
+        } catch (Exception ex){
+            throw new CurrencyServiceNotAvailableException("Currency Service not available!");
+        }
     }
 
-    //TODO
+
     public double getConvertedValue(float currentValue, String currentCurrency, String chosenCurrency) {
         initializeChannel();
         initializeStub(channel);

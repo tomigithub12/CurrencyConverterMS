@@ -28,13 +28,13 @@ public class RequestListener {
 
     @RabbitListener(queues = RabbitMQConfig.EXCHANGERATE_MESSAGE_QUEUE)
     public double onConvertedValueRequest(ConversionRequestDto conversionRequestDto) {
-        logger.warn("Retrieved request from CarInventoryMS!");
+        logger.warn("Retrieved request from CarInventoryMS to get exchange rate!");
         return currencyService.getConvertedValue(1f, conversionRequestDto.getCurrentCurrency(), conversionRequestDto.getChosenCurrency());
     }
 
     @RabbitListener(queues = RabbitMQConfig.CUSTOM_EXCHANGERATE_MESSAGE_QUEUE)
     public double onCustomRateRequest(CustomExchangeRateDto customExchangeRateDto) {
-        logger.warn("Retrieved request from CarInventoryMS!");
+        logger.warn("Retrieved request from CarInventoryMS to get exchange rate for specific value!");
         return currencyService.getConvertedValue(customExchangeRateDto.getValue(), customExchangeRateDto.getCurrentCurrency(), customExchangeRateDto.getChosenCurrency());
     }
 }
