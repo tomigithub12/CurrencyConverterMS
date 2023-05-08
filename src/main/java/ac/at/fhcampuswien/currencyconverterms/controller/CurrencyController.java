@@ -3,6 +3,7 @@ package ac.at.fhcampuswien.currencyconverterms.controller;
 
 ;
 import ac.at.fhcampuswien.currencyconverterms.dto.CurrencyResponseDto;
+import ac.at.fhcampuswien.currencyconverterms.exception.CurrencyServiceNotAvailableException;
 import ac.at.fhcampuswien.currencyconverterms.service.CurrencyService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -23,8 +24,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @CrossOrigin
 @RequestMapping(value = "api/v1/currency",
-                produces = MediaType.APPLICATION_JSON_VALUE,
-                consumes = MediaType.APPLICATION_JSON_VALUE)
+                produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "Currency", description = "Endpoints for managing currency.")
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class CurrencyController {
@@ -45,12 +45,12 @@ public class CurrencyController {
                     @ApiResponse(description = "OK", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = CurrencyService.class))),
                     @ApiResponse(description = "Currency Service is not available!", responseCode = "500", content = @Content)
             })
-    public ResponseEntity<CurrencyResponseDto> getCurrencyCode() {
+    public ResponseEntity<CurrencyResponseDto> getCurrencyCode() throws CurrencyServiceNotAvailableException {
         CurrencyResponseDto currencyResponseDto = new CurrencyResponseDto();
         currencyResponseDto.setCurrencyCodes(currencyService.getCurrencyCodes());
         return new ResponseEntity<>(currencyResponseDto, HttpStatus.OK);
     }
-    //TODO
+
 
 
 }

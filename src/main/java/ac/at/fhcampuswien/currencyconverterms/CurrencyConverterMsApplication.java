@@ -6,7 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@OpenAPIDefinition(info = @Info(title = "Carrental API", version = "1.0"))
+@OpenAPIDefinition(info = @Info(title = "CurrencyConverterMS API", version = "1.0"))
 public class CurrencyConverterMsApplication {
 
 	public static void main(String[] args) {
